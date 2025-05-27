@@ -1,0 +1,20 @@
+.container {
+  /* 설정 */
+  /* position: relative; */
+}
+
+.child {
+  /* 상하좌우 정중앙 정렬하기 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttonArea {
+    margin-top: 20px;   
+}
+
+.buttonArea > button {
+    margin-bottom: 10px;
+}
