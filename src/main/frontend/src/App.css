@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #FFFAFA;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -14,19 +16,23 @@
 }
 
 .App-header {
-  background-color: #FFE4E1;
-  min-height: 100vh;
-  display: grid; 
-  gap: 20px;
+  padding: 15rem 1rem;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* font-size: calc(10px + 2vmin);
-  color: white; */
+  position: relative;
+  z-index: 1; 
+  pointer-events: none;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.App-main {
+  margin-top: 1.5rem;     /* 헤더와 본문 사이에 간격 */
+  padding: 0 1rem;         /* 좌우 여백 */
 }
 
 .title > h2 {

@@ -1,21 +1,21 @@
 import "./App.css";
 import "./bootstrap.min.css";
+import "./css/generate_css.css";
 import Login from "./components/Login.js";
-import knittingIcon from "./icon/knitting_icon.png";
+import Layout from "./Layout.js";
+import JoinMem from "./components/JoinMem.js";
+import FindMem from "./components/FindMem.js";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="title">
-          <h2>Knitting Record</h2>
-          <img src={knittingIcon} alt="뜨개 아이콘" />
-        </div>
-        <div>
-          <Login />
-        </div>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Login />} />
+        <Route path="join" element={<JoinMem />} />
+        <Route path="find" element={<FindMem />} />
+      </Route>
+    </Routes>
   );
 }
 
