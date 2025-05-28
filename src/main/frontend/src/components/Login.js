@@ -45,7 +45,7 @@ function Login() {
             type="button"
             className="btn btn-link"
             onClick={() => {
-              navigate("/findMem");
+              navigate("/find");
             }}
           >
             아이디/비밀번호 찾기

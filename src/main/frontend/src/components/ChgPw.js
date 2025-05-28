@@ -1,39 +1,16 @@
-import Calendar from "./../module/Calendar.js";
 import { useNavigate } from "react-router-dom";
 
-function JoinMem() {
+function ChgPw() {
   let navigate = useNavigate();
 
   return (
     <div>
-      <form className="join-form long">
+      <form className="join-form short">
         <fieldset>
-          <legend>회원가입</legend>
-          <div>
-            <label htmlFor="userName" className="form-label mt-4">
-              이름
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="userName"
-              placeholder="Enter Name"
-            />
-          </div>
-          <div>
-            <label htmlFor="userId" className="form-label mt-4">
-              ID
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="userId"
-              placeholder="Enter ID"
-            />
-          </div>
+          <legend>비밀번호 변경</legend>
           <div>
             <label htmlFor="password" className="form-label mt-4">
-              Password
+              비밀번호
             </label>
             <input
               type="password"
@@ -44,13 +21,18 @@ function JoinMem() {
             />
           </div>
           <div>
-            <label htmlFor="birthDate" className="form-label mt-4">
-              생년월일
+            <label htmlFor="password" className="form-label mt-4">
+              비밀번호 확인
             </label>
-            <div>
-              <Calendar />
-            </div>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              autoComplete="off"
+            />
           </div>
+
           <div className="buttonArea">
             <button
               type="button"
@@ -59,7 +41,7 @@ function JoinMem() {
                 navigate("/findMemRes");
               }}
             >
-              회원가입
+              변경
             </button>
             <button
               type="button"
@@ -77,4 +59,4 @@ function JoinMem() {
   );
 }
 
-export default JoinMem;
+export default ChgPw;

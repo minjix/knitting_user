@@ -16,10 +16,26 @@
 }
 
 .join-form {
-  margin-top: 5rem;
   padding: 1rem 1rem;         /* 좌우 여백 */
   background: #fff;        /* 필요하면 본문 배경색 지정 */
   width: 400px;
+  /* 상하좌우 정중앙 정렬하기 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.join-form.long {
+  margin-top: 6rem;
+}
+
+.join-form .short {
+  margin-top: 3rem;
+}
+
+.container {
+  padding: 1rem 1rem;         /* 좌우 여백 */
   /* 상하좌우 정중앙 정렬하기 */
   position: absolute;
   top: 50%;
