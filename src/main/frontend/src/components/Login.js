@@ -27,7 +27,13 @@ function Login() {
           <label htmlFor="floatingPassword">Password</label>
         </div>
         <div className="buttonArea">
-          <button type="button" className="btn btn-light btn-sm">
+          <button
+            type="button"
+            className="btn btn-light btn-sm"
+            onClick={() => {
+              navigate("/main");
+            }}
+          >
             로그인
           </button>
           <br />

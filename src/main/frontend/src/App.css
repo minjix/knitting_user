@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #FFFAFA;
+  background-color: #FDF5E6;
   min-height: 100vh;
 }
 
@@ -57,6 +57,37 @@
   margin-top: 15px;
   margin-left: 15px;
   cursor: pointer;
+}
+
+.bg-custom-header {
+  background-color: #FFFAF0 !important;
+}
+
+/* 헤더 브랜드(타이틀) 크기 줄여주기 */
+.navbar-brand {
+  font-size: 1.25rem; /* 원하시는 크기로 조절 */
+}
+
+/* nav 링크도 조금 작게 */
+.navbar-nav .nav-link {
+  font-size: 0.9rem;
+  text-decoration: none !important; /* 밑줄 제거 */
+  color: #333; /* 원하는 색으로 */
+}
+
+/* hover, active 상태엔 볼드 */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+}
+
+/* 본문 위쪽 패딩: 헤더(56px) + 네비(48px) */
+.main-content {
+  padding-top: 104px;
+}
+
+.nav-font {
+  font-size: 0.8rem;
 }
 
 @keyframes App-logo-spin {

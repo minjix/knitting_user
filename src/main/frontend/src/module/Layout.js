@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import knittingIcon from "./icon/knitting_icon.png";
-import homeBtnIcon from "./icon/home_btn_icon.png";
+import knittingIcon from "./../icon/knitting_icon.png";
+import homeBtnIcon from "./../icon/home_btn_icon.png";
 
 function Layout() {
   let navigate = useNavigate();
