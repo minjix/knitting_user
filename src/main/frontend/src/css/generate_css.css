@@ -98,3 +98,14 @@
   padding-right: 2.5rem;  
   background-position: right 0.75rem center;
 }
+
+.custom-input-sm {
+  width: 50px;        /* 입력창 너비를 80px 정도로 좁게 조정 */
+  height: 30px;       /* 필요하다면 높이도 고정 */
+  font-size: 0.875rem; /* 폰트 크기를 form-control-sm과 비슷하게 유지 */
+}
+
+.form-control-sm.custom-input-sm {
+  padding: 0.25rem 0.5rem; /* 기본 부트스트랩 padding보다 더 작게 */
+  font-size: 0.875rem;     /* 이미 form-control-sm가 이 크기지만 혹시 조정하고 싶으면 */
+}

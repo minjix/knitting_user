@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Pagination from "./../module/Pagination.js";
 import profileImg from "./../img/profile_sample.jpg";
 
@@ -95,7 +95,14 @@ function MyKnits() {
             <tbody>
               <tr>
                 <td>1</td>
-                <td>목도리</td>
+                <td>
+                  <Link
+                    to={`/myknitsdetail`}
+                    className="text-decoration-none text-dark"
+                  >
+                    목도리
+                  </Link>
+                </td>
                 {/* <td>10</td>
                 <td>50</td> */}
                 <td>5</td>

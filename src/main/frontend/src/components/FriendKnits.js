@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Pagination from "./../module/Pagination.js";
 
 function FriendKnits() {
@@ -87,7 +87,14 @@ function FriendKnits() {
               <tr>
                 <td>1</td>
                 <td>민지</td>
-                <td>목도리</td>
+                <td>
+                  <Link
+                    to={`/fredetail`}
+                    className="text-decoration-none text-dark"
+                  >
+                    목도리
+                  </Link>
+                </td>
                 <td>5</td>
                 <td>10</td>
                 <td>

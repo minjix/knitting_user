@@ -14,7 +14,9 @@ import FindMemRes from "./components/FindMemRes.js";
 import ChgPw from "./components/ChgPw.js";
 import MyKnits from "./components/MyKnits.js";
 import MyKnitsReg from "./components/MyKnitsReg.js";
+import MyKnitsDetail from "./components/MyKnitsDetail.js";
 import FriendKnits from "./components/FriendKnits.js";
+import FreKnitsDetail from "./components/FreKnitsDetail.js";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -36,7 +38,9 @@ function App() {
         <Route index element={<MyKnits />} />
         <Route path="myknits" element={<MyKnits />} />
         <Route path="myknitsreg" element={<MyKnitsReg />} />
+        <Route path="myknitsdetail" element={<MyKnitsDetail />} />
         <Route path="freknits" element={<FriendKnits />} />
+        <Route path="fredetail" element={<FreKnitsDetail />} />
       </Route>
     </Routes>
   );
