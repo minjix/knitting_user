@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import Pagination from "./../module/Pagination.js";
 import profileImg from "./../img/profile_sample.jpg";
 
 function MyKnits() {
+  let navigate = useNavigate();
+
   return (
     <div className="container mt-4">
-      {/* ─── 가운데 정렬된 칼럼 안에 타이틀 + 테이블을 함께 묶음 ────────────────────────── */}
       <div className="row justify-content-center">
         <div className="col-20">
           <div className="d-flex align-items-center mb-3">
@@ -99,9 +101,9 @@ function MyKnits() {
                 <td>5</td>
                 <td>10</td>
                 <td>
-                  <div class="progress">
+                  <div className="progress">
                     <div
-                      class="progress-bar progress-bar-striped bg-warning"
+                      className="progress-bar progress-bar-striped bg-warning"
                       role="progressbar"
                       style={{ width: "100%" }}
                       aria-valuenow="100"
@@ -132,9 +134,9 @@ function MyKnits() {
                 <td>5</td>
                 <td>10</td>
                 <td>
-                  <div class="progress">
+                  <div className="progress">
                     <div
-                      class="progress-bar progress-bar-striped bg-danger"
+                      className="progress-bar progress-bar-striped bg-danger"
                       role="progressbar"
                       style={{ width: "50%" }}
                       aria-valuenow="50"
@@ -174,9 +176,11 @@ function MyKnits() {
               type="button"
               className="btn btn-light btn-sm position-absolute end-0"
               style={{ top: 0 }}
-              onClick={() => {}}
+              onClick={() => {
+                navigate("/myknitsreg");
+              }}
             >
-              등록
+              기록하기
             </button>
           </div>
         </div>
