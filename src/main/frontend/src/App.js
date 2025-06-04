@@ -17,6 +17,7 @@ import MyKnitsReg from "./components/MyKnitsReg.js";
 import MyKnitsDetail from "./components/MyKnitsDetail.js";
 import FriendKnits from "./components/FriendKnits.js";
 import FreKnitsDetail from "./components/FreKnitsDetail.js";
+import MyPage from "./components/MyPage.js";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -41,6 +42,7 @@ function App() {
         <Route path="myknitsdetail" element={<MyKnitsDetail />} />
         <Route path="freknits" element={<FriendKnits />} />
         <Route path="fredetail" element={<FreKnitsDetail />} />
+        <Route path="myPage" element={<MyPage />} />
       </Route>
     </Routes>
   );

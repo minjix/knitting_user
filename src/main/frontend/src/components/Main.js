@@ -64,19 +64,16 @@ function Main() {
                   MyPage
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="mypageDropdown">
-                  <li>
+                  {/* <li>
                     <Link
                       className="dropdown-item nav-font"
                       to="/mypage/profile"
                     >
                       프로필
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
-                    <Link
-                      className="dropdown-item nav-font"
-                      to="/mypage/settings"
-                    >
+                    <Link className="dropdown-item nav-font" to="/myPage">
                       설정
                     </Link>
                   </li>
