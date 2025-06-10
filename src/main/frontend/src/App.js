@@ -5,6 +5,7 @@ import "./css/generate_css.css";
 import "./css/pagination-reset.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
 import Login from "./components/Login.js";
 import Main from "./components/Main.js";
 import Layout from "./module/Layout.js";
@@ -20,12 +21,15 @@ import FreKnitsDetail from "./components/FreKnitsDetail.js";
 import MyPage from "./components/MyPage.js";
 
 function App() {
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(() => sessionStorage.getItem("token"));
 
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login onLogin={(newToken) => setToken(newToken)} />}
+        />
         <Route path="join" element={<JoinMem />} />
         <Route path="find" element={<FindMem />} />
         <Route path="findMemRes" element={<FindMemRes />} />
