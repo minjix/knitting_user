@@ -17,7 +17,7 @@ function Login() {
 
     // 임시로 “로그인 성공”했다고 가정하고 토큰을 저장:
     const fakeToken = "eyJhbGci…(예시 JWT)";
-    localStorage.setItem("token", fakeToken);
+    sessionStorage.setItem("token", fakeToken);
 
     // (2) 저장하고 나서 메인(‘/’)으로 이동하면 App.js에서 token을 감지하고 Main을 보여줍니다.
     navigate("/", { replace: true });
