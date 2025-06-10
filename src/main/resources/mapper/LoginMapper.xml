@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.knitting.user.mapper.LoginMapper">
+
+    <insert id="regUser" parameterType="com.knitting.user.dto.UserDto">
+        <selectKey keyProperty="userId" resultType="int" order="BEFORE">
+            SELECT ISNULL(MAX(USER_ID), 0) + 1 FROM KNIT_USERS
+        </selectKey>
+        INSERT INTO KNIT_USERS (
+            USER_NAME,
+            LOGIN_ID,
+            PASSWORD,
+            BIRTHDATE,
+            ROLE,
+            IS_LOCKED,
+            CREATED_AT,
+            UPDATED_AT
+        )
+        VALUES (
+            #{userName}
+            #{loginId},
+            #{password},
+            #{birthdate},
+            'ROLE_USER',
+            0,
+            sysdate(),
+            sysdate()
+        )
+    </insert>
+</mapper>

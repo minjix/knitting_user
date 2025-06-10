@@ -1,5 +1,8 @@
 package com.knitting.user.service;
 
+import com.knitting.user.dto.UserDto;
+
 public interface LoginService {
-    //public List retrieveCntsMgtList(UISMap data, LPagingData pagingData) throws Exception;
+
+    public void regUser(UserDto dto) throws  Exception;
 }

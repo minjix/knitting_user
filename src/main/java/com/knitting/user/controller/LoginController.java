@@ -1,7 +1,7 @@
 package com.knitting.user.controller;
 
 import com.knitting.user.service.LoginService;
-import com.knitting.user.vo.UserDto;
+import com.knitting.user.dto.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-//    @PostMapping("/regUser")
-//    public void regUser(@RequestBody UserDto dto){
-//        loginService.regUser(dto);
-//    }
+    @PostMapping("/regUser")
+    public void regUser(@RequestBody UserDto dto) throws Exception {
+        loginService.regUser(dto);
+    }
 
 }

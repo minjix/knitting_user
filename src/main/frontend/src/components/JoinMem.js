@@ -96,7 +96,26 @@ function JoinMem() {
       }));
       return;
     }
+
+    regUser();
   };
+
+  const regUser = () => {
+      const [userInfo] = useState([]);
+      userInfo.userName = userName;
+      userInfo.loginId = loginId;
+      userInfo.password = password;
+      userInfo.birthdate = '1998-10-14';
+
+      console.log(userInfo);
+
+      axios.post("/regUser", userInfo).then(function(result){
+        console.log(result)
+        console.log("회원가입 성공!")
+      }).catch(function(error){
+        console.log(error)
+      })
+  }
 
   return (
     <div>

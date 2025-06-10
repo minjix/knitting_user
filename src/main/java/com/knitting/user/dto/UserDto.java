@@ -1,4 +1,4 @@
-package com.knitting.user.vo;
+package com.knitting.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
