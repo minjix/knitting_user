@@ -10,6 +10,7 @@ function JoinMem() {
     loginId: "",
     password: "",
     passwordChk: "",
+    birthdate: new Date(),
   });
 
   let [formErrors, setFormErrors] = useState({
@@ -22,6 +23,7 @@ function JoinMem() {
   const [userInfo] = useState({}); // 회원가입시 parameter로 전달할 로그인 정보
 
   let idCheck = /^[A-Za-z0-9]{6,15}$/;
+  let pwdCheck = /^[A-Za-z0-9]{8,}$/;
 
   useEffect(() => {
     setIsDuplicate(false);
@@ -85,7 +87,15 @@ function JoinMem() {
     if (formValues.passwordChk === "" || formValues.passwordChk == null) {
       setFormErrors((prev) => ({
         ...prev,
-        passwordChk: "비밀번호를 입력해주세요.",
+        passwordChk: "비밀번호 확인을을 입력해주세요.",
+      }));
+      return;
+    }
+
+    if (!pwdCheck.test(formValues.password)) {
+      setFormErrors((prev) => ({
+        ...prev,
+        password: "영문과 숫자를 조합하여 8자 이상 입력해 주세요.",
       }));
       return;
     }
@@ -105,7 +115,7 @@ function JoinMem() {
     userInfo.userName = formValues.userName;
     userInfo.loginId = formValues.loginId;
     userInfo.password = formValues.password;
-    userInfo.birthdate = "1998-10-14";
+    userInfo.birthdate = formValues.birthdate;
 
     console.log(userInfo);
 
@@ -149,21 +159,23 @@ function JoinMem() {
             <label htmlFor="loginId" className="form-label mt-4">
               ID
             </label>
-            <input
-              type="text"
-              className="form-control"
-              id="loginId"
-              placeholder="Enter ID"
-              onChange={handleChange("loginId")}
-            />
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                id="loginId"
+                placeholder="Enter ID"
+                onChange={handleChange("loginId")}
+              />
 
-            <button
-              type="button"
-              className="btn btn-dark btn-sm"
-              onClick={handleIdCheck}
-            >
-              중복확인
-            </button>
+              <button
+                type="button"
+                className="btn btn-dark btn-sm"
+                onClick={handleIdCheck}
+              >
+                중복확인
+              </button>
+            </div>
             {formErrors.loginId && (
               <div
                 className={
@@ -229,7 +241,14 @@ function JoinMem() {
               생년월일
             </label>
             <div>
-              <Calendar />
+              <Calendar
+                onSelDate={(date) => {
+                  setFormValues((prev) => ({
+                    ...prev,
+                    birthdate: date,
+                  }));
+                }}
+              />
             </div>
           </div>
           <div className="buttonArea">

@@ -3,8 +3,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import styles from "./../css/calendar.module.css";
 
-function Calendar() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+function Calendar({ onSelDate }) {
+  const [selectedDate] = useState(new Date());
 
   return (
     <DatePicker
@@ -13,7 +13,10 @@ function Calendar() {
       minDate={new Date("2000-01-01")} // minDate 이전 날짜 선택 불가
       maxDate={new Date()} // maxDate 이후 날짜 선택 불가
       selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
+      onChange={(date) => {
+        //setSelectedDate(date);
+        onSelDate(date);
+      }}
       className={styles.datePicker}
     />
   );

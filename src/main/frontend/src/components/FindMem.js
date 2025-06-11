@@ -1,8 +1,67 @@
 import Calendar from "./../module/Calendar.js";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function FindMem() {
   let navigate = useNavigate();
+
+  let [info, setInfo] = useState({
+    userNameId: "",
+    birthdate: new Date(),
+    userNamePw: "",
+    loginId: "",
+  });
+
+  console.log(info);
+
+  let [errorMsg, setErrorMsg] = useState({
+    userNameId: "",
+    birthdate: "",
+    userNamePw: "",
+    loginId: "",
+  });
+
+  const handleChg = (field) => (e) => {
+    let val = e.target.value;
+    setInfo((prev) => ({ ...prev, [field]: val }));
+    setErrorMsg((prev) => ({ ...prev, [field]: "" }));
+  };
+
+  const handleIdChk = () => {
+    if (info.userNameId === "" || info.userNameId == null) {
+      setErrorMsg((prev) => ({
+        ...prev,
+        userNameId: "이름을 입력해주세요.",
+      }));
+
+      return;
+    }
+
+    navigate("/findMemRes");
+  };
+
+  const handlePwChk = () => {
+    if (info.userNamePw === "" || info.userNamePw == null) {
+      setErrorMsg((prev) => ({
+        ...prev,
+        userNamePw: "이름을 입력해주세요.",
+      }));
+
+      return;
+    }
+
+    if (info.loginId === "" || info.loginId == null) {
+      setErrorMsg((prev) => ({
+        ...prev,
+        loginId: "ID를 입력해주세요.",
+      }));
+
+      return;
+    }
+
+    navigate("/findPW");
+  };
+
   return (
     <div className="container py-4">
       <div className="row gx-4 gy-4">
@@ -22,7 +81,13 @@ function FindMem() {
                     className="form-control"
                     id="userName"
                     placeholder="Enter Name"
+                    onChange={handleChg("userNameId")}
                   />
+                  {errorMsg.userNameId && (
+                    <div className="invalid-feedback d-block">
+                      {errorMsg.userNameId}
+                    </div>
+                  )}
                 </div>
                 {/* 생년월일 */}
                 <div className="mb-3">
@@ -30,7 +95,11 @@ function FindMem() {
                     생년월일
                   </label>
                   <div>
-                    <Calendar />
+                    <Calendar
+                      onSelDate={(date) =>
+                        setInfo((prev) => ({ ...prev, birthdate: date }))
+                      }
+                    />
                   </div>
                 </div>
                 {/* 버튼 */}
@@ -38,9 +107,7 @@ function FindMem() {
                   <button
                     type="button"
                     className="btn btn-light btn-sm me-2"
-                    onClick={() => {
-                      navigate("/findMemRes");
-                    }}
+                    onClick={handleIdChk}
                   >
                     확인
                   </button>
@@ -65,26 +132,36 @@ function FindMem() {
                     className="form-control"
                     id="nameForPwd"
                     placeholder="Enter Name"
+                    onChange={handleChg("userNamePw")}
                   />
+                  {errorMsg.userNamePw && (
+                    <div className="invalid-feedback d-block">
+                      {errorMsg.userNamePw}
+                    </div>
+                  )}
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="userId" className="form-label">
+                  <label htmlFor="loginId" className="form-label">
                     아이디
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="userId"
+                    id="loginId"
                     placeholder="Enter ID"
+                    onChange={handleChg("loginId")}
                   />
+                  {errorMsg.loginId && (
+                    <div className="invalid-feedback d-block">
+                      {errorMsg.loginId}
+                    </div>
+                  )}
                 </div>
                 <div className="d-flex justify-content-end">
                   <button
                     type="button"
                     className="btn btn-light btn-sm"
-                    onClick={() => {
-                      navigate("/findPW");
-                    }}
+                    onClick={handlePwChk}
                   >
                     확인
                   </button>
