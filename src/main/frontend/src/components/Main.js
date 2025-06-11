@@ -91,7 +91,7 @@ function Main() {
           </div>
         </div>
       </nav>
-      <main className="main-content container">
+      <main className="main-content container" style={{ marginTop: "56px" }}>
         <Outlet />
       </main>
     </div>

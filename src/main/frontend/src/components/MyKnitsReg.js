@@ -1,7 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MyKnitsReg() {
   let navigate = useNavigate();
+
+  let [knitName, setKnitName] = useState("");
+  let [row, setRow] = useState(0);
+  let [isPublic, setIsPublic] = useState(0);
+  let [errorMsg, setErrorMsg] = useState("");
+
+  let [info, setInfo] = useState({});
+
+  const handleValidChk = () => {
+    if (knitName === "" || knitName == null) {
+      setErrorMsg("뜨개명을 입력해주세요.");
+
+      return;
+    }
+
+    navigate("/myknits");
+  };
+
+  const regKnits = () => {
+    info.knitName = knitName;
+    info.row = row;
+    info.isPublic = isPublic;
+  };
+
   return (
     <div className="container">
       {/* ─── row: 가운데 정렬 ─── */}
@@ -21,8 +46,15 @@ function MyKnitsReg() {
                     className="form-control form-control-sm custom-input"
                     id="knitName"
                     placeholder="뜨개명"
+                    onChange={(e) => {
+                      setKnitName(e.target.value);
+                      setErrorMsg("");
+                    }}
                   />
                   <label htmlFor="knitName">뜨개명</label>
+                  {errorMsg && (
+                    <div className="invalid-feedback d-block">{errorMsg}</div>
+                  )}
                 </div>
               </fieldset>
               <fieldset className="mb-4">
@@ -36,6 +68,10 @@ function MyKnitsReg() {
                     min={0}
                     max={1000}
                     autoComplete="off"
+                    defaultValue={0}
+                    onChange={(e) => {
+                      setRow(e.target.value);
+                    }}
                   />
                   <label htmlFor="totalRows">총 단수</label>
                 </div>
@@ -49,7 +85,7 @@ function MyKnitsReg() {
                       type="radio"
                       name="isPublic"
                       id="publicYes"
-                      value="yes"
+                      value="1"
                       defaultChecked
                     />
                     <label className="form-check-label" htmlFor="publicYes">
@@ -62,7 +98,7 @@ function MyKnitsReg() {
                       type="radio"
                       name="isPublic"
                       id="publicNo"
-                      value="no"
+                      value="0"
                     />
                     <label className="form-check-label" htmlFor="publicNo">
                       비공개
@@ -76,7 +112,7 @@ function MyKnitsReg() {
                   className="btn btn-light btn-sm px-3"
                   onClick={(e) => {
                     e.preventDefault();
-                    navigate("/myknits");
+                    handleValidChk();
                   }}
                 >
                   등록

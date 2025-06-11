@@ -2,12 +2,11 @@ html, body, #root {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #FDF5E6;  /* 원하는 연베이지 색상 */
 }
 
 .App {
   text-align: center;
-  background-color: transparent;
+  background-color: #FDF5E6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +25,7 @@ html, body, #root {
 
 .App-header {
   width: 100%;           
-  background-color: transparent; 
+  background-color: #FDF5E6;
   padding: 1rem 0;
   position: relative;
   padding-top: 15vh;
@@ -39,6 +38,7 @@ html, body, #root {
   display: inline-flex;
   justify-content: center;  
   align-items: center; 
+  background-color: #FDF5E6;
 }
 
 .App-link {
@@ -53,7 +53,7 @@ html, body, #root {
   padding-top: 10vh;    
   padding-left: 1rem;
   padding-right: 1rem;
-  background: transparent;
+  background-color: #FDF5E6;
 }
 
 .title {
@@ -92,25 +92,21 @@ html, body, #root {
   background-color: #FFFAF0 !important;
 }
 
-/* 헤더 브랜드(타이틀) 크기 줄여주기 */
 .navbar-brand {
-  font-size: 1.25rem; /* 원하시는 크기로 조절 */
+  font-size: 1.25rem; 
 }
 
-/* nav 링크도 조금 작게 */
 .navbar-nav .nav-link {
   font-size: 0.9rem;
   text-decoration: none !important; /* 밑줄 제거 */
-  color: #333; /* 원하는 색으로 */
+  color: #333;
 }
 
-/* hover, active 상태엔 볼드 */
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
   font-weight: 600;
 }
 
-/* 본문 위쪽 패딩: 헤더(56px) + 네비(48px) */
 .main-content {
   padding-top: 104px;
 }
