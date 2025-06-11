@@ -10,12 +10,10 @@ function Login({ onLogin }) {
 
   const chkValid = () => {
     if (loginId === "" || loginId == null) {
-      //setMessage("ID를 입력해주세요.");
       return "ID를 입력해주세요.";
     }
 
     if (password === "" || password == null) {
-      //setMessage("비밀번호를 입력해주세요.");
       return "비밀번호를 입력해주세요.";
     }
 
@@ -43,10 +41,8 @@ function Login({ onLogin }) {
     // 임시로 “로그인 성공”했다고 가정하고 토큰을 저장:
     const fakeToken = "eyJhbGci…(예시 JWT)";
     sessionStorage.setItem("token", fakeToken);
-    console.log("로그인 성공, navigate 전");
     onLogin(fakeToken);
 
-    // (2) 저장하고 나서 메인(‘/’)으로 이동하면 App.js에서 token을 감지하고 Main을 보여줍니다.
     navigate("/", { replace: true });
   };
 

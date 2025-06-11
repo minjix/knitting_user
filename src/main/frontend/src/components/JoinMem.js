@@ -19,6 +19,7 @@ function JoinMem() {
     passwordChk: "",
   });
   let [isDuplicate, setIsDuplicate] = useState(false);
+  const [userInfo] = useState({}); // 회원가입시 parameter로 전달할 로그인 정보
 
   let idCheck = /^[A-Za-z0-9]{6,15}$/;
 
@@ -68,7 +69,7 @@ function JoinMem() {
     if (!isDuplicate) {
       setFormErrors((prev) => ({
         ...prev,
-        userName: "ID 중복 확인을 해주세요.",
+        loginId: "ID 중복 확인을 해주세요.",
       }));
       setIsDuplicate(false);
     }
@@ -101,24 +102,23 @@ function JoinMem() {
   };
 
   const regUser = () => {
-      const [userInfo] = useState([]);
-      userInfo.userName = userName;
-      userInfo.loginId = loginId;
-      userInfo.password = password;
-      userInfo.birthdate = '1998-10-14';
+    userInfo.userName = formValues.userName;
+    userInfo.loginId = formValues.loginId;
+    userInfo.password = formValues.password;
+    userInfo.birthdate = "1998-10-14";
 
-      console.log(userInfo);
+    console.log(userInfo);
 
-      axios.post("/regUser", userInfo).then(function(result){
-        console.log(result)
-        console.log("회원가입 성공!")
-      }).catch(function(error){
-        console.log(error)
-      })
-  }
+    // axios.post("/regUser", userInfo).then(function(result){
+    //   console.log(result)
+    //   console.log("회원가입 성공!")
+    // }).catch(function(error){
+    //   console.log(error)
+    // })
+  };
 
   return (
-    <div>
+    <div className="container">
       <form className="join-form long">
         <fieldset>
           <legend>회원가입</legend>

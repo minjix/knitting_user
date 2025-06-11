@@ -1,7 +1,16 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #FDF5E6;  /* 원하는 연베이지 색상 */
+}
+
 .App {
   text-align: center;
-  background-color: #FDF5E6;
+  background-color: transparent;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -16,14 +25,20 @@
 }
 
 .App-header {
-  padding: 15rem 1rem;
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;           
+  background-color: transparent; 
+  padding: 1rem 0;
   position: relative;
-  z-index: 1; 
-  pointer-events: none;
+  padding-top: 15vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  z-index: 5;
+}
+
+.header-content {
+  display: inline-flex;
+  justify-content: center;  
+  align-items: center; 
 }
 
 .App-link {
@@ -31,8 +46,20 @@
 }
 
 .App-main {
-  margin-top: 1.5rem;     /* 헤더와 본문 사이에 간격 */
-  padding: 0 1rem;         /* 좌우 여백 */
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  padding-top: 10vh;    
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: transparent;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .title > h2 {
@@ -52,11 +79,11 @@
   height: 40px;
   display: flex;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 15px;
+  left: 15px;
   margin-top: 15px;
   margin-left: 15px;
-  cursor: pointer;
+  cursor: pointer; 
 }
 
 .bg-custom-header {
@@ -96,5 +123,39 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .App-header {
+    padding-top: 3vh;
+    padding-bottom: 1vh;
+  }
+  .title h2 {
+    font-size: 1.25rem;
+  }
+  .App-main {
+    padding-top: 5vh;
+  }
+  .homeBtn {
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .title h2 {
+    font-size: 1.4rem;
+  }
+  .homeBtn {
+    top: 12px;
+    left: 12px;
+    width: 36px;
+    height: 36px;
+  }
+  .App-main {
+    margin-top: 0.9rem;
   }
 }
