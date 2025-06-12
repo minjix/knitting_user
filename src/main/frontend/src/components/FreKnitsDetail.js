@@ -1,7 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MyKnitsDetail() {
   let navigate = useNavigate();
+
+  let [comment, setComment] = useState("");
+
+  const regComment = () => {
+    console.log(comment);
+  };
 
   return (
     <div className="container mt-4">
@@ -32,6 +39,7 @@ function MyKnitsDetail() {
                     <input
                       type="text"
                       className="form-control form-control-sm"
+                      readOnly
                     />
                     <span>/</span>
                     <input
@@ -47,6 +55,7 @@ function MyKnitsDetail() {
                     <input
                       type="text"
                       className="form-control form-control-sm"
+                      readOnly
                     />
                     <span>/</span>
                     <input
@@ -92,9 +101,14 @@ function MyKnitsDetail() {
                   className="form-control form-control-sm"
                   rows="3"
                   placeholder="댓글을 입력하세요…"
+                  onChange={(e) => {
+                    setComment(e.target.value);
+                  }}
                 ></textarea>
                 <div className="d-flex justify-content-end mt-2">
-                  <button className="btn btn-sm btn-light">등록</button>
+                  <button className="btn btn-sm btn-light" onClick={regComment}>
+                    등록
+                  </button>
                 </div>
               </div>
 

@@ -1,8 +1,20 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import Pagination from "./../module/Pagination.js";
 
 function FriendKnits() {
   let navigate = useNavigate();
+
+  let [searchFilter, setSearchFilter] = useState("");
+  let [searchKeyword, setSearchKeyword] = useState("");
+  let [searchInfo, setSearchInfo] = useState({});
+
+  const handleSearch = () => {
+    searchInfo.filter = searchFilter;
+    searchInfo.keyword = searchKeyword;
+
+    console.log(searchInfo);
+  };
 
   return (
     <div className="container mt-4">
@@ -26,12 +38,12 @@ function FriendKnits() {
                 <select
                   id="statusSelect"
                   className="form-select form-select-sm"
-                  //   value={statusFilter}
-                  //   onChange={(e) => setStatusFilter(e.target.value)}
+                  value={searchFilter}
+                  onChange={(e) => setSearchFilter(e.target.value)}
                 >
                   <option value="">전체</option>
-                  <option value="complete">이름</option>
-                  <option value="inprogress">뜨개명</option>
+                  <option value="userName">이름</option>
+                  <option value="knitName">뜨개명</option>
                 </select>
               </div>
 
@@ -48,17 +60,17 @@ function FriendKnits() {
                   id="searchInput"
                   className="form-control form-select-sm"
                   placeholder="뜨개명을 입력하세요"
-                  //   value={keyword}
-                  //   onChange={(e) => setKeyword(e.target.value)}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
               </div>
 
               {/* 검색 버튼 */}
               <div className="col-auto">
                 <button
-                  type="submit"
+                  type="button"
                   className="btn btn-light btn-sm"
-                  //   onClick={handleSearch}
+                  onClick={handleSearch}
                 >
                   검색
                 </button>

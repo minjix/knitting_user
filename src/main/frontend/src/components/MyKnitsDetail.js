@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MyKnitsDetail() {
   let navigate = useNavigate();
+
+  let [progStich, setProStich] = useState(10);
+  let [totStich, setTotStich] = useState(0);
+  let [progRow, setProRow] = useState(0);
+  let [totRow, setTotRow] = useState(0);
+
+  let [knitName, setKnitName] = useState("");
 
   return (
     <div className="container">
@@ -18,18 +26,28 @@ function MyKnitsDetail() {
                 <button
                   type="button"
                   className="btn btn-outline-dark btn-sm px-2"
+                  onClick={() => {
+                    if (progStich > 0) {
+                      setProStich(progStich - 1);
+                    }
+                  }}
                 >
                   -
                 </button>
                 <input
                   type="text"
                   className="form-control form-control-sm custom-input-sm"
-                  id="progressKo"
+                  id="progStich"
                   autoComplete="off"
+                  value={progStich}
+                  readOnly
                 />
                 <button
                   type="button"
                   className="btn btn-outline-dark btn-sm px-2"
+                  onClick={() => {
+                    setProStich(progStich + 1);
+                  }}
                 >
                   +
                 </button>
@@ -37,8 +55,10 @@ function MyKnitsDetail() {
                 <input
                   type="text"
                   className="form-control form-control-sm custom-input-sm"
-                  id="totalKo"
+                  id="totStich"
                   autoComplete="off"
+                  value={totStich}
+                  onChange={(e) => setTotStich(e.target.value)}
                 />
               </div>
             </div>
@@ -49,18 +69,28 @@ function MyKnitsDetail() {
                 <button
                   type="button"
                   className="btn btn-outline-dark btn-sm px-2"
+                  onClick={() => {
+                    if (progRow > 0) {
+                      setProRow(progRow - 1);
+                    }
+                  }}
                 >
                   -
                 </button>
                 <input
                   type="text"
                   className="form-control form-control-sm custom-input-sm"
-                  id="progressDan"
+                  id="progRow"
                   autoComplete="off"
+                  value={progRow}
+                  readOnly
                 />
                 <button
                   type="button"
                   className="btn btn-outline-dark btn-sm px-2"
+                  onClick={() => {
+                    setProRow(progRow + 1);
+                  }}
                 >
                   +
                 </button>
@@ -68,9 +98,10 @@ function MyKnitsDetail() {
                 <input
                   type="text"
                   className="form-control form-control-sm custom-input-sm"
-                  id="totalDan"
+                  id="totRow"
                   autoComplete="off"
                   readOnly
+                  value={totRow}
                 />
               </div>
             </div>
@@ -88,6 +119,7 @@ function MyKnitsDetail() {
                     id="knitName"
                     placeholder="뜨개명"
                     value={"목도리"}
+                    onChange={(e) => setKnitName(e.target.value)}
                   />
                 </div>
               </fieldset>

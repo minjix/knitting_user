@@ -1,9 +1,21 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import Pagination from "./../module/Pagination.js";
 import profileImg from "./../img/profile_sample.jpg";
 
 function MyKnits() {
   let navigate = useNavigate();
+
+  let [searchFilter, setSearchFilter] = useState("");
+  let [searchKeyword, setSearchKeyword] = useState("");
+  let [searchInfo, setSearchInfo] = useState({});
+
+  const handleSearch = () => {
+    searchInfo.filter = searchFilter;
+    searchInfo.keyword = searchKeyword;
+
+    console.log(searchInfo);
+  };
 
   return (
     <div className="container mt-4">
@@ -33,8 +45,8 @@ function MyKnits() {
                 <select
                   id="statusSelect"
                   className="form-select form-select-sm"
-                  //   value={statusFilter}
-                  //   onChange={(e) => setStatusFilter(e.target.value)}
+                  value={searchFilter}
+                  onChange={(e) => setSearchFilter(e.target.value)}
                 >
                   <option value="">전체</option>
                   <option value="complete">완료</option>
@@ -55,17 +67,17 @@ function MyKnits() {
                   id="searchInput"
                   className="form-control form-select-sm"
                   placeholder="뜨개명을 입력하세요"
-                  //   value={keyword}
-                  //   onChange={(e) => setKeyword(e.target.value)}
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
                 />
               </div>
 
               {/* 검색 버튼 */}
               <div className="col-auto">
                 <button
-                  type="submit"
+                  type="button"
                   className="btn btn-light btn-sm"
-                  //   onClick={handleSearch}
+                  onClick={handleSearch}
                 >
                   검색
                 </button>
@@ -129,6 +141,8 @@ function MyKnits() {
                       className="form-check-input"
                       type="checkbox"
                       id="flexCheckDefault"
+                      checked
+                      disabled
                     />
                   </div>
                 </td>
@@ -162,6 +176,7 @@ function MyKnits() {
                       className="form-check-input"
                       type="checkbox"
                       id="flexCheckDefault"
+                      disabled
                     />
                   </div>
                 </td>

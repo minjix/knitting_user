@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import Radio from "./../module/Radio.js";
+import RadioGroup from "./../module/RadioGroup.js";
+
 function MyKnitsReg() {
   let navigate = useNavigate();
 
   let [knitName, setKnitName] = useState("");
   let [row, setRow] = useState(0);
-  let [isPublic, setIsPublic] = useState(0);
+  let [isPublic, setIsPublic] = useState(1);
   let [errorMsg, setErrorMsg] = useState("");
 
   let [info, setInfo] = useState({});
@@ -18,13 +21,16 @@ function MyKnitsReg() {
       return;
     }
 
-    navigate("/myknits");
+    regKnits();
+    //navigate("/myknits");
   };
 
   const regKnits = () => {
     info.knitName = knitName;
     info.row = row;
     info.isPublic = isPublic;
+
+    console.log(info);
   };
 
   return (
@@ -79,8 +85,32 @@ function MyKnitsReg() {
               <fieldset className="mb-4">
                 <legend className="fs-6">공개 여부</legend>
                 <div>
-                  <div className="form-check form-check-inline">
-                    <input
+                  <RadioGroup>
+                    <div className="form-check form-check-inline">
+                      <Radio
+                        name="isPublic"
+                        value="1"
+                        defaultChecked="true"
+                        onChange={(val) => {
+                          setIsPublic(val);
+                        }}
+                      >
+                        공개
+                      </Radio>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <Radio
+                        name="isPublic"
+                        value="0"
+                        onChange={(val) => {
+                          setIsPublic(val);
+                        }}
+                      >
+                        비공개
+                      </Radio>
+                    </div>
+                  </RadioGroup>
+                  {/* <input
                       className="form-check-input"
                       type="radio"
                       name="isPublic"
@@ -102,8 +132,7 @@ function MyKnitsReg() {
                     />
                     <label className="form-check-label" htmlFor="publicNo">
                       비공개
-                    </label>
-                  </div>
+                    </label> */}
                 </div>
               </fieldset>
               <div className="d-flex justify-content-start gap-2">
