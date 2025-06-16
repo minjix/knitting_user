@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import Radio from "./../module/Radio.js";
+import RadioGroup from "./../module/RadioGroup.js";
+
 function MyKnitsDetail() {
   let navigate = useNavigate();
 
@@ -8,8 +11,38 @@ function MyKnitsDetail() {
   let [totStich, setTotStich] = useState(0);
   let [progRow, setProRow] = useState(0);
   let [totRow, setTotRow] = useState(0);
+  let [isPublic, setIsPublic] = useState(1);
+  let [knitName, setKnitName] = useState("목도리");
+  let [errorMsg, setErrorMsg] = useState("");
+  let [info, setInfo] = useState({});
+  let [imsi, setImsi] = useState({});
 
-  let [knitName, setKnitName] = useState("");
+  const handleValidChk = () => {
+    if (knitName === "" || knitName == null) {
+      setErrorMsg("뜨개명을 입력해주세요.");
+
+      return;
+    }
+
+    updKnitsInfo();
+    //navigate("/myknits");
+  };
+
+  const updKnitsInfo = () => {
+    info.knitName = knitName;
+    info.isPublic = isPublic;
+
+    console.log(info);
+  };
+
+  const updKnitsRows = () => {
+    imsi.progStich = progStich;
+    imsi.totStich = totStich;
+    imsi.progRow = progRow;
+    imsi.totRow = totRow;
+
+    console.log(imsi);
+  };
 
   return (
     <div className="container">
@@ -41,6 +74,7 @@ function MyKnitsDetail() {
                   autoComplete="off"
                   value={progStich}
                   readOnly
+                  onChange={updKnitsRows}
                 />
                 <button
                   type="button"
@@ -58,7 +92,11 @@ function MyKnitsDetail() {
                   id="totStich"
                   autoComplete="off"
                   value={totStich}
-                  onChange={(e) => setTotStich(e.target.value)}
+                  onChange={(e) => {
+                    setTotStich(e.target.value);
+                    setProStich(0);
+                    updKnitsRows();
+                  }}
                 />
               </div>
             </div>
@@ -84,6 +122,7 @@ function MyKnitsDetail() {
                   autoComplete="off"
                   value={progRow}
                   readOnly
+                  onChange={updKnitsRows}
                 />
                 <button
                   type="button"
@@ -102,6 +141,7 @@ function MyKnitsDetail() {
                   autoComplete="off"
                   readOnly
                   value={totRow}
+                  onChange={updKnitsRows}
                 />
               </div>
             </div>
@@ -118,15 +158,43 @@ function MyKnitsDetail() {
                     readOnly
                     id="knitName"
                     placeholder="뜨개명"
-                    value={"목도리"}
+                    value={knitName}
                     onChange={(e) => setKnitName(e.target.value)}
                   />
+                  {errorMsg && (
+                    <div className="invalid-feedback d-block">{errorMsg}</div>
+                  )}
                 </div>
               </fieldset>
               <fieldset className="mb-4">
                 <legend className="fs-6">공개 여부</legend>
                 <div>
-                  <div className="form-check form-check-inline">
+                  <RadioGroup>
+                    <div className="form-check form-check-inline">
+                      <Radio
+                        name="isPublic"
+                        value="1"
+                        defaultChecked="true"
+                        onChange={(val) => {
+                          setIsPublic(val);
+                        }}
+                      >
+                        공개
+                      </Radio>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <Radio
+                        name="isPublic"
+                        value="0"
+                        onChange={(val) => {
+                          setIsPublic(val);
+                        }}
+                      >
+                        비공개
+                      </Radio>
+                    </div>
+                  </RadioGroup>
+                  {/* <div className="form-check form-check-inline">
                     <input
                       className="form-check-input"
                       type="radio"
@@ -150,17 +218,14 @@ function MyKnitsDetail() {
                     <label className="form-check-label" htmlFor="publicNo">
                       비공개
                     </label>
-                  </div>
+                  </div> */}
                 </div>
               </fieldset>
               <div className="d-flex justify-content-end gap-2">
                 <button
                   type="submit"
                   className="btn btn-light btn-sm px-3"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate("/myknits");
-                  }}
+                  onClick={handleValidChk}
                 >
                   수정
                 </button>
