@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Calendar from "./../module/Calendar.js";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function JoinMem() {
   let navigate = useNavigate();
@@ -58,14 +59,14 @@ function JoinMem() {
     }
 
     // 아이디 중복 체크 api 호출 영역
-    // axios.post("/chkDupId", {params:{id:loginId}}).then(function(result){
-        //   console.log(result)
-        //   console.log("id 중복체크 성공!")
-//        setIsDuplicate(true);
-//            setFormErrors((prev) => ({ ...prev, loginId: "" }));
-        // }).catch(function(error){
-        //   console.log(error)
-        // })
+     axios.post("/join/chkDupId", {id:formValues.loginId}).then(function(result){
+        console.log(result)
+        console.log("id 중복체크 성공!")
+        setIsDuplicate(true);
+            setFormErrors((prev) => ({ ...prev, loginId: "" }));
+        }).catch(function(error){
+            console.log(error)
+        })
 
   };
 

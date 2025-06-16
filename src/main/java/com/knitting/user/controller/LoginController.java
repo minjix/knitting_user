@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,19 +39,24 @@ public class LoginController {
         return response;
     }
 
-    @PostMapping("/chkDupId")
+    @ResponseBody
+    @PostMapping("/join/chkDupId")
     public Map<String, Object> chkDupId(@RequestBody Map<String, String> param) throws Exception {
 
         Map<String, Object> response = new HashMap<>();
 
         String id = param.get("id");
+        //boolean exists = userService.isUserIdExists(id);
 
         log.debug("요청 파라미터: {}", id);
 
         int result = loginService.chkDupId(id);
         log.debug("중복 확인 결과: {}", result);
 
+        response.put("duplicate", result);
         response.put("result", result >= 1 ? "duplicate" : "available");
+        response.put("timestamp", System.currentTimeMillis());
+
         return response;
     }
 

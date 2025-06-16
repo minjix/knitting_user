@@ -32,7 +32,7 @@
     </insert>
 
     <select id="chkDupId" parameterType ="string" resultType="int">
-        SELECT CNT(LOGIN_ID)
+        SELECT COUNT(LOGIN_ID)
           FROM KNIT_USERS
          WHERE LOGIN_ID = #{loginId}
     </select>
