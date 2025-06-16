@@ -30,4 +30,17 @@
             sysdate()
         )
     </insert>
+
+    <select id="chkDupId" parameterType ="string" resultType="int">
+        SELECT CNT(LOGIN_ID)
+          FROM KNIT_USERS
+         WHERE LOGIN_ID = #{loginId}
+    </select>
+
+    <select id="findLoginId" parameterType ="map" resultType="string">
+        SELECT LOGIN_ID
+          FROM KNIT_USERS
+         WHERE USER_NAME = #{userName}
+           AND BIRTHDATE = #{birthdate}
+    </select>
 </mapper>

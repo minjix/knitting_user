@@ -1,5 +1,6 @@
 package com.knitting.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
 public class UserDto {
 
     /*유저ID*/
@@ -23,6 +25,7 @@ public class UserDto {
     private String password;
 
     /*생년월일*/
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
     /*권한 (예: ROLE_USER, ROLE_ADMIN)*/
@@ -32,9 +35,11 @@ public class UserDto {
     private boolean isLocked;
 
     /*생성 시각*/
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     /*수정 시각*/
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
 }

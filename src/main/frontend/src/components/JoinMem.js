@@ -10,7 +10,7 @@ function JoinMem() {
     loginId: "",
     password: "",
     passwordChk: "",
-    birthdate: new Date(),
+    birthdate: "",
   });
 
   let [formErrors, setFormErrors] = useState({
@@ -57,9 +57,16 @@ function JoinMem() {
       return;
     }
 
-    // 아이디 중복 체크 api 호출 영역역
-    setIsDuplicate(true);
-    setFormErrors((prev) => ({ ...prev, loginId: "" }));
+    // 아이디 중복 체크 api 호출 영역
+    // axios.post("/chkDupId", {params:{id:loginId}}).then(function(result){
+        //   console.log(result)
+        //   console.log("id 중복체크 성공!")
+//        setIsDuplicate(true);
+//            setFormErrors((prev) => ({ ...prev, loginId: "" }));
+        // }).catch(function(error){
+        //   console.log(error)
+        // })
+
   };
 
   const validSubmitChk = () => {
