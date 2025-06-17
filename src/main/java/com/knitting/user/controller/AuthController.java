@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
+//커밋테스트
     private final AuthenticationManager authenticationManager;
     private final AuthService authService;
 
