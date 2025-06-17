@@ -59,14 +59,20 @@ function JoinMem() {
     }
 
     // 아이디 중복 체크 api 호출 영역
-     axios.post("/join/chkDupId", {id:formValues.loginId}).then(function(result){
-        console.log(result)
+    axios.post("/chkDupId", {id:formValues.loginId}).then(function(res){
+        console.log(res)
         console.log("id 중복체크 성공!")
-        setIsDuplicate(true);
+
+        if(res.result == "available") {
+            setIsDuplicate(false);
+            setFormErrors((prev) => ({ ...prev, loginId: "이미 사용중인 아이디입니다." }));
+        } else {
+            setIsDuplicate(true);
             setFormErrors((prev) => ({ ...prev, loginId: "" }));
-        }).catch(function(error){
-            console.log(error)
-        })
+        }
+    }).catch(function(error){
+        console.log(error)
+    })
 
   };
 
@@ -127,8 +133,8 @@ function JoinMem() {
 
     console.log(userInfo);
 
-    // axios.post("/regUser", userInfo).then(function(result){
-    //   console.log(result)
+    // axios.post("/regUser", {param : userInfo}).then(function(res){
+    //   console.log(res)
     //   console.log("회원가입 성공!")
     // }).catch(function(error){
     //   console.log(error)
