@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-//커밋테스트
     private final AuthenticationManager authenticationManager;
     private final AuthService authService;
 
@@ -27,7 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login( @RequestBody LoginDto dto){ //@Valid
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDto dto){
         try{
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(dto.getLoginId(), dto.getPassword())
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/insertUser")
-    public ResponseEntity<?> insertUser(@RequestBody JoinDto dto){ //@Valid
+    public ResponseEntity<?> insertUser(@Valid @RequestBody JoinDto dto){
         try{
             UserResponseDto created = authService.insertUser(dto);
             return  ResponseEntity.ok(created);
